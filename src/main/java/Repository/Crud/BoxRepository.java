@@ -1,7 +1,6 @@
 package Repository.Crud;
 
 import model.Box;
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -26,6 +25,4 @@ public class BoxRepository {
     public void delete(Box box){
         boxCrudRepository.delete(box);
     }
-
-
 }

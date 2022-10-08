@@ -19,7 +19,7 @@ public class Box {
 
     @OneToMany(cascade = {CascadeType.PERSIST})
     @JsonIgnoreProperties({"box", "client"})
-    private List<Messages> messages;
+    private List<Message> messages;
 
     @ManyToOne
     @JoinColumn(name = "categoryId")
@@ -70,11 +70,11 @@ public class Box {
         this.description = description;
     }
 
-    public List<Messages> getMessages() {
+    public List<Message> getMessages() {
         return messages;
     }
 
-    public void setMessages(List<Messages> messages) {
+    public void setMessages(List<Message> messages) {
         this.messages = messages;
     }
 
@@ -93,4 +93,5 @@ public class Box {
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
     }
+
 }
