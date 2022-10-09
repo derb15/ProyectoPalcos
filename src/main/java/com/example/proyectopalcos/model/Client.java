@@ -10,7 +10,7 @@ import java.util.List;
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idClient;
 
     private String name;
     private String email;
@@ -26,11 +26,11 @@ public class Client {
     public List<Reservation> reservations;
 
     public Integer getId() {
-        return id;
+        return idClient;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer idClient) {
+        this.idClient = idClient;
     }
 
     public String getName() {

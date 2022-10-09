@@ -18,12 +18,12 @@ public class Reservation {
     private String status = "Created";
 
     @ManyToOne
-    @JoinColumn(name = "boxId")
+    @JoinColumn(name = "idBox")
     @JsonIgnoreProperties("reservations")
     private Box box;
 
     @ManyToOne
-    @JoinColumn(name = "clientId")
+    @JoinColumn(name = "idClient")
     @JsonIgnoreProperties({"reservations", "messages"})
     private Client client;
 
