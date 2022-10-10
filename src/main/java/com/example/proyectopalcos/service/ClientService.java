@@ -17,14 +17,14 @@ public class ClientService {
     public List<Client> getAll(){
         return clientRepository.getAll();
     }
-    public Optional<Client> getClient(int id){
-        return clientRepository.getClient(id);
+    public Optional<Client> getClient(int idClient){
+        return clientRepository.getClient(idClient);
     }
     public Client save(Client d){
-        if(d.getId()==null){
+        if(d.getIdClient()==null){
             return clientRepository.save(d);
         }else{
-            Optional<Client> e= clientRepository.getClient(d.getId());
+            Optional<Client> e= clientRepository.getClient(d.getIdClient());
             if(e.isPresent()){
                 return d;
             }else{
@@ -33,8 +33,8 @@ public class ClientService {
         }
     }
     public Client update(Client d){
-        if(d.getId()!=null){
-            Optional<Client> q = clientRepository.getClient(d.getId());
+        if(d.getIdClient()!=null){
+            Optional<Client> q = clientRepository.getClient(d.getIdClient());
             if(q.isPresent()){
                 if(d.getName()!=null){
                     q.get().setName(d.getName());
@@ -57,9 +57,9 @@ public class ClientService {
             return d;
         }
     }
-    public boolean delete(int id){
+    public boolean delete(int idClient){
         boolean flag=false;
-        Optional<Client>d= clientRepository.getClient(id);
+        Optional<Client>d= clientRepository.getClient(idClient);
         if(d.isPresent()){
             clientRepository.delete(d.get());
             flag=true;

@@ -13,12 +13,12 @@ public class Message {
     private String messageText;
 
     @ManyToOne
-    @JoinColumn(name="boxId")
+    @JoinColumn(name="idBox")
     @JsonIgnoreProperties({"messages"})
     private Box box;
 
     @ManyToOne
-    @JoinColumn(name="clientId")
+    @JoinColumn(name="idClient")
     @JsonIgnoreProperties({"messages"})
     private Client client;
 
@@ -38,9 +38,7 @@ public class Message {
         this.messageText = messageText;
     }
 
-    public Box getBox() {
-        return box;
-    }
+    public Box getBox() { return box; }
 
     public void setBox(Box box) {
         this.box = box;
@@ -53,5 +51,7 @@ public class Message {
     public void setClient(Client client) {
         this.client = client;
     }
+
+
 
 }

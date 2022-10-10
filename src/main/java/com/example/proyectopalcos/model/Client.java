@@ -11,7 +11,6 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idClient;
-
     private String name;
     private String email;
     private String age;
@@ -25,13 +24,9 @@ public class Client {
     @JsonIgnoreProperties("client")
     public List<Reservation> reservations;
 
-    public Integer getId() {
-        return idClient;
-    }
+    public Integer getIdClient() { return idClient; }
 
-    public void setId(Integer idClient) {
-        this.idClient = idClient;
-    }
+    public void setIdClient(Integer idClient) { this.idClient = idClient;}
 
     public String getName() {
         return name;
