@@ -18,7 +18,7 @@ public class Category {
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "category")
     @JsonIgnoreProperties("category")
-    private List<Box> box;
+    private List<Box> boxes;
 
     public Integer getId() {
         return id;
@@ -45,11 +45,11 @@ public class Category {
     }
 
     public List<Box> getBox() {
-        return box;
+        return boxes;
     }
 
-    public void setBox(List<Box> box) {
-        this.box = box;
+    public void setBox(List<Box> boxes) {
+        this.boxes = boxes;
     }
 
 }
