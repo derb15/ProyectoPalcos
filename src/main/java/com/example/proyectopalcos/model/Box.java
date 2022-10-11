@@ -23,12 +23,13 @@ public class Box {
     private Category category;
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "box")
+    @JsonIgnoreProperties({"box", "client"})
+    public List<Message> messages;
+
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "box")
     @JsonIgnoreProperties({"box", "messages"})
     public List<Reservation> reservations;
 
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "box")
-    @JsonIgnoreProperties({"box", "client"})
-    public List<Message> messages;
 
     public Integer getId() {
         return id;
