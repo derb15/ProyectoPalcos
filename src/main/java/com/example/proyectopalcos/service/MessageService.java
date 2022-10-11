@@ -16,14 +16,14 @@ public class MessageService {
     public List<Message> getAll(){
         return messageRepository.getAll();
     }
-    public Optional<Message> getMessage(int id){
-        return messageRepository.getMessage(id);
+    public Optional<Message> getMessage(int idMessage){
+        return messageRepository.getMessage(idMessage);
     }
     public Message save(Message m){
-        if(m.getId()==null){
+        if(m.getIdMessage()==null){
             return messageRepository.save(m);
         }else{
-            Optional<Message> e=messageRepository.getMessage(m.getId());
+            Optional<Message> e=messageRepository.getMessage(m.getIdMessage());
             if(e.isPresent()){
                 return m;
             }else{
@@ -32,8 +32,8 @@ public class MessageService {
         }
     }
     public Message update(Message m) {
-        if (m.getId() != null) {
-            Optional<Message> q = messageRepository.getMessage(m.getId());
+        if (m.getIdMessage() != null) {
+            Optional<Message> q = messageRepository.getMessage(m.getIdMessage());
             if (q.isPresent()) {
                 if (m.getMessageText() != null) {
                     q.get().setMessageText(m.getMessageText());
@@ -45,9 +45,9 @@ public class MessageService {
         }
         return m;
     }
-    public boolean delete(int id){
+    public boolean delete(int idMessage){
         boolean flag=false;
-        Optional<Message>m=messageRepository.getMessage(id);
+        Optional<Message>m=messageRepository.getMessage(idMessage);
         if(m.isPresent()){
             messageRepository.delete(m.get());
             flag=true;

@@ -10,34 +10,32 @@ import java.util.Date;
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+    private Integer idReservation;
     private Date startDate;
-    private Date endDate;
-
-    private String status = "Created";
+    private Date devolutionDate;
+    private String status = "created";
 
     @ManyToOne
-    @JoinColumn(name = "idBox")
-    @JsonIgnoreProperties("reservation")
+    @JoinColumn(name = "BoxId")
+    @JsonIgnoreProperties("reservations")
     private Box box;
 
     @ManyToOne
-    @JoinColumn(name = "idClient")
+    @JoinColumn(name = "ClientId")
     @JsonIgnoreProperties({"reservations", "messages"})
     private Client client;
 
-    @OneToOne(cascade = {CascadeType.REMOVE}, mappedBy = "reservations")
+    @OneToOne
     @JsonIgnoreProperties("reservation")
     private Score score;
 
 
-    public Integer getId() {
-        return id;
+    public Integer getIdReservation() {
+        return idReservation;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdReservation(Integer idReservation) {
+        this.idReservation = idReservation;
     }
 
     public Date getStartDate() {
@@ -48,13 +46,9 @@ public class Reservation {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
-        return endDate;
-    }
+    public Date getDevolutionDate() { return devolutionDate;  }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
+    public void setDevolutionDate(Date devolutionDate) {this.devolutionDate = devolutionDate;    }
 
     public String getStatus() {
         return status;

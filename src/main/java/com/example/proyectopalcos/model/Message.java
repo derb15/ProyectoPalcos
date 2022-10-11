@@ -5,29 +5,29 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "messages")
+@Table(name = "message")
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idMessage;
     private String messageText;
 
     @ManyToOne
-    @JoinColumn(name="idBox")
-    @JsonIgnoreProperties({"messages"})
+    @JoinColumn(name="BoxId")
+    @JsonIgnoreProperties({"messages", "reservations"})
     private Box box;
 
     @ManyToOne
-    @JoinColumn(name="idClient")
-    @JsonIgnoreProperties({"messages"})
+    @JoinColumn(name="ClientId")
+    @JsonIgnoreProperties({"messages", "reservations"})
     private Client client;
 
-    public Integer getId() {
-        return id;
+    public Integer getIdMessage() {
+        return idMessage;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdMessage(Integer idMessage) {
+        this.idMessage = idMessage;
     }
 
     public String getMessageText() {

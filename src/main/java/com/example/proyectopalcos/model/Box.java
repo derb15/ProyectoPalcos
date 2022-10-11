@@ -17,18 +17,18 @@ public class Box {
     private Integer capacity;
     private String description;
 
-    @OneToMany(cascade = {CascadeType.PERSIST})
-    @JsonIgnoreProperties({"box", "client"})
-    private List<Message> messages;
-
     @ManyToOne
     @JoinColumn(name = "categoryId")
-    @JsonIgnoreProperties("box")
+    @JsonIgnoreProperties("boxes")
     private Category category;
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "box")
     @JsonIgnoreProperties({"box", "messages"})
     public List<Reservation> reservations;
+
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "box")
+    @JsonIgnoreProperties({"box", "client"})
+    public List<Message> messages;
 
     public Integer getId() {
         return id;

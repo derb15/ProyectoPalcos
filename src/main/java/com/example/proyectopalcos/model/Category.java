@@ -44,13 +44,12 @@ public class Category {
         this.description = description;
     }
 
-    public List<Box> getBox() {
+    public List<Box> getBoxes() {
         return boxes;
     }
 
-    public void setBox(List<Box> boxes) {
+    public void setBoxes(List<Box> boxes) {
         this.boxes = boxes;
     }
-
 }
 

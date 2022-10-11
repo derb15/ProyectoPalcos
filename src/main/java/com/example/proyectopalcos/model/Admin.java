@@ -7,18 +7,18 @@ import javax.persistence.*;
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idAdmin;
 
     private String name;
     private String email;
     private String password;
 
-    public Integer getId() {
-        return id;
+    public Integer getIdAdmin() {
+        return idAdmin;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdAdmin(Integer idAdmin) {
+        this.idAdmin = idAdmin;
     }
 
     public String getName() {

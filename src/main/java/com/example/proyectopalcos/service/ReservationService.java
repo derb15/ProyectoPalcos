@@ -16,14 +16,14 @@ public class ReservationService {
     public List<Reservation> getAll(){
         return reservationRepository.getAll();
     }
-    public Optional<Reservation> getReservation(int id){
-        return reservationRepository.getReservation(id);
+    public Optional<Reservation> getReservation(int idReservation){
+        return reservationRepository.getReservation(idReservation);
     }
     public Reservation save(Reservation r){
-        if(r.getId()==null){
+        if(r.getIdReservation()==null){
             return reservationRepository.save(r);
         }else{
-            Optional<Reservation> e=reservationRepository.getReservation(r.getId());
+            Optional<Reservation> e=reservationRepository.getReservation(r.getIdReservation());
             if(e.isPresent()){
                 return r;
             }else{
@@ -32,14 +32,14 @@ public class ReservationService {
         }
     }
     public Reservation update(Reservation r){
-        if(r.getId()!=null){
-            Optional<Reservation> q = reservationRepository.getReservation(r.getId());
+        if(r.getIdReservation()!=null){
+            Optional<Reservation> q = reservationRepository.getReservation(r.getIdReservation());
             if(q.isPresent()){
                 if(r.getStartDate()!=null){
                     q.get().setStartDate(r.getStartDate());
                 }
-                if (r.getEndDate()!=null){
-                    q.get().setEndDate(r.getEndDate());
+                if (r.getDevolutionDate()!=null){
+                    q.get().setDevolutionDate(r.getDevolutionDate());
                 }
                 if (r.getStatus()!=null){
                     q.get().setStatus(r.getStatus());
@@ -53,9 +53,9 @@ public class ReservationService {
             return r;
         }
     }
-    public boolean delete(int id){
+    public boolean delete(int idReservation){
         boolean flag=false;
-        Optional<Reservation>r=reservationRepository.getReservation(id);
+        Optional<Reservation>r=reservationRepository.getReservation(idReservation);
         if(r.isPresent()){
             reservationRepository.delete(r.get());
             flag=true;
