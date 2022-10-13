@@ -9,8 +9,10 @@ function traerPalco() {
         contentType: "application/JSON",
 
         success: function (data) {
-            console.log(data)
-            pintarRespuestaPalco(data.items);
+            if (data) {
+                pintarRespuestaPalco(data.items);
+            }
+
 
         },
         error: function (xhr, status) {
