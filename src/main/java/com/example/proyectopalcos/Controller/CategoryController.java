@@ -2,6 +2,7 @@ package com.example.proyectopalcos.Controller;
 
 import com.example.proyectopalcos.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import com.example.proyectopalcos.service.CategoryService;
 
@@ -17,6 +18,7 @@ public class CategoryController {
         return categoryService.getAll();
     }
     @PostMapping("/save")
+    @ResponseStatus(HttpStatus.CREATED)
     public Category save(@RequestBody Category c){
         return categoryService.save(c);
     }
