@@ -10,16 +10,19 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/Box")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.HEAD, RequestMethod.DELETE, RequestMethod.PUT})
 public class BoxController {
     @Autowired
     private BoxService boxService;
+
     @GetMapping("/all")
-    public List<Box> getAll(){
+    public List<Box> getAll() {
         return boxService.getAll();
     }
+
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Box save(@RequestBody Box b){
+    public Box save(@RequestBody Box b) {
         return boxService.save(b);
     }
 }
