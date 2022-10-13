@@ -1,7 +1,7 @@
 function traerInformacion(){
 //FUNCION GET
     $.ajax({
-        url : 'https://g138b03a26498fe-qy8zgvfzypnu70uq.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/client/client',
+        url : '/api/Client/all',
         type : 'GET',
         dataType : 'json',
         contentType: "application/JSON",
@@ -62,7 +62,7 @@ function adicionarRegistro() {
     //console.log(dataToSend);
 
     $.ajax({
-        url : 'https://g138b03a26498fe-qy8zgvfzypnu70uq.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/client/client',
+        url : '/api/Client/save',
         type : 'POST',
         //dataType : 'json',
         data:dataToSend,
@@ -102,7 +102,7 @@ function actualizarRegistro() {
     //console.log(dataToSend);
 
     $.ajax({
-        url : 'https://g138b03a26498fe-qy8zgvfzypnu70uq.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/client/client',
+        url : '/api/Client/save',
         type : 'PUT',
         //dataType : 'json',
         data:dataToSend,
@@ -135,7 +135,7 @@ function borrarRegistro(idCliente) {
     //console.log(dataToSend);
 
     $.ajax({
-        url : 'https://g138b03a26498fe-qy8zgvfzypnu70uq.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/client/client',
+        url : '/api/Client/all',
         type : 'DELETE',
         //dataType : 'json',
         data:dataToSend,
@@ -163,7 +163,7 @@ function borrarRegistro(idCliente) {
 function traerPalcos(){
 //FUNCION GET
     $.ajax({
-        url : 'https://g138b03a26498fe-qy8zgvfzypnu70uq.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/box/box',
+        url : '/api/Box/all',
         type : 'GET',
         dataType : 'json',
         contentType: "application/JSON",
@@ -228,7 +228,7 @@ function adicionarRegistroPalcos() {
     //console.log(dataToSend);
 
     $.ajax({
-        url : 'https://g138b03a26498fe-qy8zgvfzypnu70uq.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/box/box',
+        url : '/api/Box/save',
         type : 'POST',
         dataType : 'json',
         data:dataToSend,
@@ -271,7 +271,7 @@ function actualizarRegistroPalcos() {
     //console.log(dataToSend);
 
     $.ajax({
-        url : 'https://g138b03a26498fe-qy8zgvfzypnu70uq.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/box/box',
+        url : '/api/Box/save',
         type : 'PUT',
         //dataType : 'json',
         data:dataToSend,
@@ -305,7 +305,7 @@ function borrarRegistroPalcos(idPalco) {
     //console.log(dataToSend);
 
     $.ajax({
-        url : 'https://g138b03a26498fe-qy8zgvfzypnu70uq.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/box/box',
+        url : '/api/Box/all',
         type : 'DELETE',
         //dataType : 'json',
         data:dataToSend,
@@ -334,7 +334,7 @@ function borrarRegistroPalcos(idPalco) {
 function traerMensajes(){
 //FUNCION GET
     $.ajax({
-        url : 'https://g138b03a26498fe-qy8zgvfzypnu70uq.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/message/message',
+        url : '/api/Message/all',
         type : 'GET',
         dataType : 'json',
         contentType: "application/JSON",
@@ -386,7 +386,7 @@ function adicionarRegistroMensajes() {
     //console.log(dataToSend);
 
     $.ajax({
-        url : 'https://g138b03a26498fe-qy8zgvfzypnu70uq.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/message/message',
+        url : '/api/Message/save',
         type : 'POST',
         dataType : 'json',
         data:dataToSend,
@@ -420,7 +420,7 @@ function actualizarRegistroMensajes() {
     //console.log(dataToSend);
 
     $.ajax({
-        url : 'https://g138b03a26498fe-qy8zgvfzypnu70uq.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/message/message',
+        url : '/api/Message/save',
         type : 'PUT',
         //dataType : 'json',
         data:dataToSend,
@@ -451,7 +451,7 @@ function borrarRegistroMensajes(idMensaje) {
     //console.log(dataToSend);
 
     $.ajax({
-        url : 'https://g138b03a26498fe-qy8zgvfzypnu70uq.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/message/message',
+        url : '/api/Message/all',
         type : 'DELETE',
         //dataType : 'json',
         data:dataToSend,
