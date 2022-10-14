@@ -24,4 +24,11 @@ public class AdminController {
     public Admin save(@RequestBody Admin s){
         return adminService.save(s);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id) {
+        return adminService.delete(id);
+    }
+
 }

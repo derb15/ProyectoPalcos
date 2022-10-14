@@ -1,5 +1,6 @@
 package com.example.proyectopalcos.Controller;
 
+import com.example.proyectopalcos.model.Box;
 import com.example.proyectopalcos.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,5 +22,16 @@ public class MessageController {
     @ResponseStatus(HttpStatus.CREATED)
     public Message save(@RequestBody Message m){
         return messageService.save(m);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Message update(@RequestBody Message m){
+        return messageService.update(m);
+    }
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id) {
+        return messageService.delete(id);
     }
 }

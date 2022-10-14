@@ -36,11 +36,11 @@ public class ClientService {
         if(d.getIdClient()!=null){
             Optional<Client> q = clientRepository.getClient(d.getIdClient());
             if(q.isPresent()){
-                if(d.getName()!=null){
-                    q.get().setName(d.getName());
-                }
                 if (d.getEmail()!=null){
                     q.get().setEmail(d.getEmail());
+                }
+                if(d.getName()!=null){
+                    q.get().setName(d.getName());
                 }
                 if (d.getAge()!=null){
                     q.get().setAge(d.getAge());

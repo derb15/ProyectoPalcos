@@ -1,6 +1,7 @@
 package com.example.proyectopalcos.Controller;
 
 
+import com.example.proyectopalcos.model.Box;
 import com.example.proyectopalcos.model.Score;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,5 +23,16 @@ public class ScoreController {
     @ResponseStatus(HttpStatus.CREATED)
     public Score save(@RequestBody Score s){
         return scoreService.save(s);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Score update(@RequestBody Score s){
+        return scoreService.update(s);
+    }
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id) {
+        return scoreService.delete(id);
     }
 }
