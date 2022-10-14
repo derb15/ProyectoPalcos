@@ -13,55 +13,59 @@ public class BoxService {
     @Autowired
     private BoxRepository boxRepository;
 
-    public List<Box> getAll(){
+    public List<Box> getAll() {
         return boxRepository.getAll();
     }
-    public Optional<Box> getBox(int id){
+
+    public Optional<Box> getBox(int id) {
         return boxRepository.getBox(id);
     }
-    public Box save(Box b){
-        if(b.getId()==null){
+
+    public Box save(Box b) {
+        if (b.getId() == null) {
             return boxRepository.save(b);
-        }else{
-            Optional<Box> e=boxRepository.getBox(b.getId());
-            if(e.isPresent()){
+        } else {
+            Optional<Box> e = boxRepository.getBox(b.getId());
+            if (e.isPresent()) {
                 return b;
-            }else{
+            } else {
                 return boxRepository.save(b);
             }
         }
     }
-    public Box update(Box b){
-        if(b.getId()!=null){
+
+    public Box update(Box b) {
+        if (b.getId() != null) {
             Optional<Box> q = boxRepository.getBox(b.getId());
-            if(q.isPresent()){
-                if(b.getName()!=null){
+            if (q.isPresent()) {
+                if (b.getName() != null) {
                     q.get().setName(b.getName());
                 }
-                if (b.getLocation()!=null){
+                if (b.getLocation() != null) {
                     q.get().setLocation(b.getLocation());
                 }
-                if (b.getCapacity()!=null){
+                if (b.getCapacity() != null) {
                     q.get().setCapacity(b.getCapacity());
                 }
-                if (b.getDescription()!=null){
+                if (b.getDescription() != null) {
                     q.get().setDescription(b.getDescription());
                 }
                 boxRepository.save(q.get());
                 return q.get();
-            }else{
+            } else {
                 return b;
             }
-        }else{
+        } else {
             return b;
         }
     }
-    public boolean delete(int id){
-        boolean flag=false;
-        Optional<Box>b=boxRepository.getBox(id);
-        if(b.isPresent()){
+
+    public boolean delete(int id) {
+        boolean flag = false;
+        Optional<Box> b = boxRepository.getBox(id);
+        if (b.isPresent()) {
             boxRepository.delete(b.get());
-            flag=true;
+            flag = true;
         }
         return flag;
     }

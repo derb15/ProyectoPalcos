@@ -13,16 +13,19 @@ public class BoxRepository {
     @Autowired
     private BoxCrudRepository boxCrudRepository;
 
-    public List<Box> getAll(){
+    public List<Box> getAll() {
         return (List<Box>) boxCrudRepository.findAll();
     }
-    public Optional<Box> getBox(int id){
+
+    public Optional<Box> getBox(int id) {
         return boxCrudRepository.findById(id);
     }
-    public Box save(Box box){
+
+    public Box save(Box box) {
         return boxCrudRepository.save(box);
     }
-    public void delete(Box box){
+
+    public void delete(Box box) {
         boxCrudRepository.delete(box);
     }
 }

@@ -1,16 +1,17 @@
-PALCO_URL = "http://144.22.132.216:8080/api/Box/all"
+PALCO_URL = "http://144.22.132.216:8080/api/Box/"
 
 function traerPalco() {
     //FUNCION GET
     $.ajax({
-        url: PALCO_URL,
+        url: PALCO_URL + "all",
         type: 'GET',
         dataType: 'json',
         contentType: "application/JSON",
 
         success: function (data) {
-            if (data) {
-                pintarRespuestaPalco(data.items);
+            console.log(data)
+            if (data.length) {
+                pintarRespuestaPalco(data);
             }
 
 
@@ -28,8 +29,8 @@ function drawTableRowPalco(palco) {
         <td>${palco.name}</td>
         <td>${palco.capacity}</td>
         <td>${palco.description}</td>
-        <td>${palco.category}</td>
-         <td>${palco.ubication}</td>
+        <td>${palco.category?.name}</td>
+         <td>${palco.location}</td>
         <td>
         </div>
         </td>
@@ -49,7 +50,6 @@ function pintarRespuestaPalco(listaPalcos) {
 }
 
 function adicionarRegistroPalco() {
-    const id = $("#idPalco");
     const nombre = $("#nombrePalco");
     const capacidad = $("#capacidadPalco");
     const descripcion = $("#descripcionPalco");
@@ -57,26 +57,24 @@ function adicionarRegistroPalco() {
     const ubicacion = $("#ubicacionPalco");
 
     let data = {
-        id: id.val(),
         name: nombre.val(),
         capacity: capacidad.val(),
         description: descripcion.val(),
-        category: categoria.val(),
-        ubication: ubicacion.val(),
+        category: {id: categoria.val()},
+        location: ubicacion.val(),
 
 
     };
     let dataToSend = JSON.stringify(data);
     console.log(dataToSend);
     $.ajax({
-        url: PALCO_URL,
+        url: PALCO_URL + "save",
         type: 'POST',
         dataType: 'json',
         data: dataToSend,
         contentType: 'application/json',
 
-        success: function (data) {
-            id.val("");
+        success: function () {
             nombre.val("");
             capacidad.val("");
             descripcion.val("");

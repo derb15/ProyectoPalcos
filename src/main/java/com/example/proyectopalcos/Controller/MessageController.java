@@ -14,13 +14,15 @@ import java.util.List;
 public class MessageController {
     @Autowired
     private MessageService messageService;
+
     @GetMapping("/all")
-    public List<Message> getAll(){
+    public List<Message> getAll() {
         return messageService.getAll();
     }
+
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Message save(@RequestBody Message m){
+    public Message save(@RequestBody Message m) {
         return messageService.save(m);
     }
 }

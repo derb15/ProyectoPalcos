@@ -13,52 +13,56 @@ public class AdminService {
     @Autowired
     private AdminRepository adminRepository;
 
-    public List<Admin> getAll(){
+    public List<Admin> getAll() {
         return adminRepository.getAll();
     }
-    public Optional<Admin> getAdmin(int id){
+
+    public Optional<Admin> getAdmin(int id) {
         return adminRepository.getAdmin(id);
     }
-    public Admin save(Admin a){
-        if(a.getIdAdmin()==null){
+
+    public Admin save(Admin a) {
+        if (a.getIdAdmin() == null) {
             return adminRepository.save(a);
-        }else{
-            Optional<Admin> e= adminRepository.getAdmin(a.getIdAdmin());
-            if(e.isPresent()){
+        } else {
+            Optional<Admin> e = adminRepository.getAdmin(a.getIdAdmin());
+            if (e.isPresent()) {
                 return a;
-            }else{
+            } else {
                 return adminRepository.save(a);
             }
         }
     }
-    public Admin update(Admin a){
-        if(a.getIdAdmin()!=null){
+
+    public Admin update(Admin a) {
+        if (a.getIdAdmin() != null) {
             Optional<Admin> q = adminRepository.getAdmin(a.getIdAdmin());
-            if(q.isPresent()){
-                if(a.getName()!=null){
+            if (q.isPresent()) {
+                if (a.getName() != null) {
                     q.get().setName(a.getName());
                 }
-                if (a.getEmail()!=null){
+                if (a.getEmail() != null) {
                     q.get().setEmail(a.getEmail());
                 }
-                if (a.getPassword()!=null){
+                if (a.getPassword() != null) {
                     q.get().setPassword(a.getPassword());
                 }
                 adminRepository.save(q.get());
                 return q.get();
-            }else{
+            } else {
                 return a;
             }
-        }else{
+        } else {
             return a;
         }
     }
-    public boolean delete(int idAdmin){
-        boolean flag=false;
-        Optional<Admin>a= adminRepository.getAdmin(idAdmin);
-        if(a.isPresent()){
+
+    public boolean delete(int idAdmin) {
+        boolean flag = false;
+        Optional<Admin> a = adminRepository.getAdmin(idAdmin);
+        if (a.isPresent()) {
             adminRepository.delete(a.get());
-            flag=true;
+            flag = true;
         }
         return flag;
     }

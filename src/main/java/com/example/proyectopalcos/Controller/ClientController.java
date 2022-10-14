@@ -14,13 +14,15 @@ import java.util.List;
 public class ClientController {
     @Autowired
     private ClientService clientService;
+
     @GetMapping("/all")
-    public List<Client> getAll(){
+    public List<Client> getAll() {
         return clientService.getAll();
     }
+
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Client save(@RequestBody Client d){
+    public Client save(@RequestBody Client d) {
         return clientService.save(d);
     }
 }

@@ -13,24 +13,27 @@ public class MessageService {
     @Autowired
     private MessageRepository messageRepository;
 
-    public List<Message> getAll(){
+    public List<Message> getAll() {
         return messageRepository.getAll();
     }
-    public Optional<Message> getMessage(int idMessage){
+
+    public Optional<Message> getMessage(int idMessage) {
         return messageRepository.getMessage(idMessage);
     }
-    public Message save(Message m){
-        if(m.getIdMessage()==null){
+
+    public Message save(Message m) {
+        if (m.getIdMessage() == null) {
             return messageRepository.save(m);
-        }else{
-            Optional<Message> e=messageRepository.getMessage(m.getIdMessage());
-            if(e.isPresent()){
+        } else {
+            Optional<Message> e = messageRepository.getMessage(m.getIdMessage());
+            if (e.isPresent()) {
                 return m;
-            }else{
+            } else {
                 return messageRepository.save(m);
             }
         }
     }
+
     public Message update(Message m) {
         if (m.getIdMessage() != null) {
             Optional<Message> q = messageRepository.getMessage(m.getIdMessage());
@@ -45,12 +48,13 @@ public class MessageService {
         }
         return m;
     }
-    public boolean delete(int idMessage){
-        boolean flag=false;
-        Optional<Message>m=messageRepository.getMessage(idMessage);
-        if(m.isPresent()){
+
+    public boolean delete(int idMessage) {
+        boolean flag = false;
+        Optional<Message> m = messageRepository.getMessage(idMessage);
+        if (m.isPresent()) {
             messageRepository.delete(m.get());
-            flag=true;
+            flag = true;
         }
         return flag;
     }

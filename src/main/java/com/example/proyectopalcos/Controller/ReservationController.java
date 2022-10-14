@@ -14,13 +14,15 @@ import java.util.List;
 public class ReservationController {
     @Autowired
     private ReservationService reservationService;
+
     @GetMapping("/all")
-    public List<Reservation> getAll(){
+    public List<Reservation> getAll() {
         return reservationService.getAll();
     }
+
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Reservation save(@RequestBody Reservation r){
+    public Reservation save(@RequestBody Reservation r) {
         return reservationService.save(r);
     }
 }
