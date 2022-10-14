@@ -1,16 +1,18 @@
-ADMIN_URL = "https://ga86dbc11d72b0c-m7pq54x8i0vwwssl.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/admin/admin"
+ADMIN_URL = "http://144.22.132.216:8080/api/Admin/"
 
 function traerAdmin() {
     //FUNCION GET
     $.ajax({
-        url: ADMIN_URL,
+        url: ADMIN_URL + "all",
         type: 'GET',
         dataType: 'json',
         contentType: "application/JSON",
 
         success: function (data) {
-            console.log(data.items)
-            pintarRespuestaAdmin(data.items);
+            console.log(data)
+            if (data.length) {
+                pintarRespuestaAdmin(data);
+            }
 
         },
         error: function (xhr, status) {
@@ -22,7 +24,7 @@ function traerAdmin() {
 
 function drawTableRowAdmin(admin) {
     return `<tr>
-        <th scope="row">${admin.id}</th>
+        <th scope="row">${admin.idAdmin}</th>
         <td>${admin.name}</td>
         <td>${admin.email}</td>
         <td>${admin.password}</td>
@@ -45,31 +47,28 @@ function pintarRespuestaAdmin(listaAdmins) {
 }
 
 function adicionarRegistroAdmin() {
-    const id = $("#idAdmin");
     const nombre = $("#nombreAdmin");
     const correo = $("#correoAdmin");
-    const contraseña = $("#contraseñaAdmin");
+    const contrasena = $("#contraseñaAdmin");
 
     let data = {
-        id: id.val(),
         name: nombre.val(),
         email: correo.val(),
-        password: contraseña.val()
+        password: contrasena.val()
     };
 
     let dataToSend = JSON.stringify(data);
     console.log(dataToSend);
     $.ajax({
-        url: ADMIN_URL,
+        url: ADMIN_URL + "save",
         type: 'POST', //dataType : 'json',
         data: dataToSend,
         contentType: 'application/json',
 
-        success: function (data) {
-            id.val("");
+        success: function () {
             nombre.val("");
             correo.val("");
-            contraseña.val("");
+            contrasena.val("");
             alert('Registro Adicionado');
         },
         error: function (xhr, status) {

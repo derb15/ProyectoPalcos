@@ -1,16 +1,18 @@
-MESSAGE_URL = "https://ga86dbc11d72b0c-m7pq54x8i0vwwssl.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/message/message"
+MESSAGE_URL = "http://144.22.132.216:8080/api/Message/"
 
 function traerMensajes() {
     //FUNCION GET
     $.ajax({
-        url: MESSAGE_URL,
+        url: MESSAGE_URL + "all",
         type: 'GET',
         dataType: 'json',
         contentType: "application/JSON",
 
         success: function (data) {
-            console.log(data.items)
-            pintarRespuestaMensajes(data.items);
+            console.log(data)
+            if (data.length) {
+                pintarRespuestaMensajes(data);
+            }
 
         },
         error: function (xhr, status) {
@@ -25,9 +27,10 @@ function traerMensajes() {
 
 function drawTableRow(item) {
     return `<tr>
-        <th scope="row">${item.id}</th>
-        <td>${item.box}</td>
-        <td>${item.text}</td>
+        <th scope="row">${item.idMessage}</th>
+        <td>${item.box.name}</td>
+        <td>${item.client.name}</td>
+        <td>${item.messageText}</td>
         <td>
         <div class="row g-3">
             <div class="col-auto">
@@ -48,26 +51,26 @@ function pintarRespuestaMensajes(items) {
 }
 
 function adicionarRegistroMensajes() {
-    const id = $("#idMensaje");
     const palco = $("#palcomensaje");
+    const cliente = $("#palcocliente");
     const texto = $("#textomensaje");
 
 
     let data = {
-        id: id.val(),
-        box: palco.val(),
-        text: texto.val()
+        box: {id: palco.val()},
+        client: {idClient: cliente.val()},
+        messageText: texto.val()
     };
     console.log(data)
     $.ajax({
-        url: MESSAGE_URL,
+        url: MESSAGE_URL + "save",
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
 
         success: function (data) {
-            id.val("");
             palco.val("");
+            cliente.val("");
             texto.val("");
             alert('Registro Adicionado');
         },

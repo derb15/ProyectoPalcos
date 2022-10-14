@@ -122,13 +122,10 @@
             <h2>Score</h2>
             <form>
                 <div class="row g-3">
-                    <div class="col-auto">
-                        <label class="form-label" for="idScore">ID</label>
-                        <input class="form-control" type="number" id="idScore" placeholder="Id">
-                    </div>
+
                     <div class="col-auto">
                         <label class="form-label" for="calificacionScore">Calificacion</label>
-                        <input class="form-control" type="number" id="calificacionScore" placeholder="Calificacion">
+                        <input class="form-control" max="5" min="0" type="number" id="calificacionScore" placeholder="Calificacion">
                     </div>
 
                     <div class="col-auto">
@@ -174,10 +171,7 @@
             <h2>Registro Admin</h2>
             <form>
                 <div class="row g-3">
-                    <div class="col-auto">
-                        <label class="form-label" for="idAdmin">ID</label>
-                        <input class="form-control" type="number" id="idAdmin" placeholder="Id">
-                    </div>
+
                     <div class="col-auto">
                         <label class="form-label" for="nombreAdmin">Nombre</label>
                         <input class="form-control" type="text" id="nombreAdmin" placeholder="Nombre">
@@ -272,10 +266,7 @@
 
             <form>
                 <div class="row g-3">
-                    <div class="col-auto">
-                        <label class="form-label" for="idReservation">ID</label>
-                        <input class="form-control" type="number" id="idReservation" placeholder="Id">
-                    </div>
+
                     <div class="row g-3">
                         <div class="col-auto">
                             <label class="form-label" for="palcoReservation">Palco</label>
@@ -284,7 +275,7 @@
                             <div class="row g-3">
                                 <div class="col-auto">
                                     <label class="form-label" for="clienteReservation">Cliente</label>
-                                    <input class="form-control" type="text" id="clienteReservation"
+                                    <input class="form-control" type="number" id="clienteReservation"
                                            placeholder="Cliente">
                                 </div>
                                 <div class="row g-3">
@@ -340,11 +331,7 @@
             <h2>Registro de Cliente</h2>
             <form>
                 <div class="row g-3">
-                    <div class="col-auto">
-                        <label class="form-label" for="idCliente">ID</label>
-                        <input class="form-control" type="number" id="idCliente"
-                               placeholder="Identificación">
-                    </div>
+
                     <div class="col-auto">
                         <label class="form-label" for="nombreCliente">Nombre</label>
                         <input class="form-control" type="text" id="nombreCliente"
@@ -400,15 +387,16 @@
             <h2>Registro de Mensaje</h2>
             <form>
                 <div class="row g-3">
-                    <div class="col-auto">
-                        <label class="form-label" for="idMensaje">ID</label>
-                        <input class="form-control" type="number" id="idMensaje"
-                               placeholder="Id">
-                    </div>
+
                     <div class="col-auto">
                         <label class="form-label" for="palcomensaje">Palco</label>
                         <input class="form-control" type="number" id="palcomensaje"
                                placeholder="Palco">
+                    </div>
+                    <div class="col-auto">
+                        <label class="form-label" for="palcocliente">Cliente</label>
+                        <input class="form-control" type="number" id="palcocliente"
+                               placeholder="Cliente">
                     </div>
                     <div class="col-auto">
                         <label class="form-label" for="textomensaje">Mensaje</label>
@@ -438,6 +426,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Palco</th>
+                        <th scope="col">Cliente</th>
                         <th scope="col">Texto</th>
                         <th scope="col"></th>
                     </tr>
