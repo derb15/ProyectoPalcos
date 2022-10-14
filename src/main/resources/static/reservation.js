@@ -1,16 +1,19 @@
-RESERVATION_URL = "https://ga86dbc11d72b0c-m7pq54x8i0vwwssl.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/reservation/reservation"
+RESERVATION_URL = "http://129.148.31.104:8080/api/Reservation/"
 
 function traerReservation() {
     //FUNCION GET
     $.ajax({
-        url: "api/Reservation/all",
+        url: RESERVATION_URL + "all",
         type: 'GET',
         dataType: 'json',
         contentType: "application/JSON",
 
         success: function (data) {
-            console.log(data.items)
-            pintarRespuestaReservation(data.items);
+            console.log(data)
+            if (data.length) {
+                pintarRespuestaReservation(data);
+            }
+
 
         },
         error: function (xhr, status) {
@@ -22,11 +25,11 @@ function traerReservation() {
 
 function drawTableRowReservation(reservation) {
     return `<tr>
-        <th scope="row">${reservation.id}</th>
-        <td>${reservation.box}</td>
-        <td>${reservation.client}</td>
-        <td>${reservation.startdate}</td>
-        <td>${reservation.devolutiondate}</td>
+        <th scope="row">${reservation.idReservation}</th>
+        <td>${reservation.box.name}</td>
+        <td>${reservation.client.name}</td>
+        <td>${reservation.startDate}</td>
+        <td>${reservation.devolutionDate}</td>
         <td>  
         </div>
         </td>
@@ -46,29 +49,26 @@ function pintarRespuestaReservation(listaReservations) {
 }
 
 function adicionarRegistroReservation() {
-    const id = $("#idReservation");
     const palco = $("#palcoReservation");
     const cliente = $("#clienteReservation");
     const fechaInicio = $("#fechaInicioReservation");
     const fechaEntrega = $("#fechaEntregaReservation");
 
     let data = {
-        id: id.val(),
-        box: palco.val(),
-        client: cliente.val(),
-        startdate: fechaInicio.val(),
-        devolutiondate: fechaEntrega.val()
+        box: {id: palco.val()},
+        client: {idClient: cliente.val()},
+        startDate: fechaInicio.val(),
+        devolutionDate: fechaEntrega.val()
     };
     let dataToSend = JSON.stringify(data);
     console.log(dataToSend);
     $.ajax({
-        url: "api/Reservation/save",
+        url: RESERVATION_URL + "save",
         type: 'POST', //dataType : 'json',
         data: dataToSend,
         contentType: 'application/json',
 
-        success: function (data) {
-            id.val("");
+        success: function () {
             palco.val("");
             cliente.val("");
             fechaInicio.val("");

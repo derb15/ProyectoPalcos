@@ -1,16 +1,18 @@
-CATEGORY_URL = "https://ga86dbc11d72b0c-m7pq54x8i0vwwssl.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/category/category"
+CATEGORY_URL = "http://129.148.31.104:8080/api/Category/"
 
 function traerCategory() {
     //FUNCION GET
     $.ajax({
-        url:"api/Category/all",
+        url: CATEGORY_URL + "all",
         type: 'GET',
         dataType: 'json',
         contentType: "application/JSON",
 
         success: function (data) {
-            console.log(data.items)
-            pintarRespuestaCategory(data.items);
+            console.log(data)
+            if (data.length) {
+                pintarRespuestaCategory(data);
+            }
 
         },
         error: function (xhr, status) {
@@ -25,6 +27,7 @@ function drawTableRowCategory(category) {
         <th scope="row">${category.id}</th>
         <td>${category.name}</td>
         <td>${category.description}</td>
+        <td>${category.boxes.map(box => " " +box.name)}</td>
         <td>    
         </div>
         </td>
@@ -44,13 +47,11 @@ function pintarRespuestaCategory(listaCategorys) {
 }
 
 function adicionarRegistroCategory() {
-    const id = $("#idCategory");
     const nombre = $("#nombreCategory");
     const descripcion = $("#descripcionCategory");
 
 
     let data = {
-        id: id.val(),
         name: nombre.val(),
         description: descripcion.val()
     };
@@ -58,13 +59,12 @@ function adicionarRegistroCategory() {
     let dataToSend = JSON.stringify(data);
     console.log(dataToSend);
     $.ajax({
-        url: "api/Category/save",
+        url: CATEGORY_URL + "save",
         type: 'POST',
         data: dataToSend,
         contentType: 'application/json',
 
         success: function (data) {
-            id.val("");
             nombre.val("");
             descripcion.val("");
             alert('Registro Adicionado');

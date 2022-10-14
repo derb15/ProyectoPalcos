@@ -1,16 +1,18 @@
-SCORE_URL = "https://ga86dbc11d72b0c-m7pq54x8i0vwwssl.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/score/score"
+SCORE_URL = "http://129.148.31.104:8080/api/Score/"
 
 function traerScore() {
     //FUNCION GET
     $.ajax({
-        url: "api/Score/all",
+        url: SCORE_URL + "all",
         type: 'GET',
         dataType: 'json',
         contentType: "application/JSON",
 
         success: function (data) {
-            console.log(data.items)
-            pintarRespuestaScore(data.items);
+            console.log(data)
+            if (data.length) {
+                pintarRespuestaScore(data);
+            }
 
         },
         error: function (xhr, status) {
@@ -22,10 +24,10 @@ function traerScore() {
 
 function drawTableRowScore(score) {
     return `<tr>
-        <th scope="row">${score.id}</th>
-        <td>${score.calification}</td>
-        <td>${score.message}</td>
-        <td>${score.reservation}</td>   
+        <th scope="row">${score.idScore}</th>
+        <td>${score.stars}</td>
+        <td>${score.messageText}</td>
+        <td>${score.reservation.idReservation}</td>   
         <td>     
         </div>
         </td>
@@ -45,28 +47,25 @@ function pintarRespuestaScore(listaScores) {
 }
 
 function adicionarRegistroScore() {
-    const id = $("#idScore");
     const calificacion = $("#calificacionScore");
     const mensaje = $("#mensajeScore");
     const reserva = $("#reservaScore");
 
     let data = {
-        id: id.val(),
-        calification: calificacion.val(),
-        message: mensaje.val(),
-        reservation: reserva.val()
+        stars: calificacion.val(),
+        messageText: mensaje.val(),
+        reservation: {idReservation: reserva.val()}
     };
 
     let dataToSend = JSON.stringify(data);
     console.log(dataToSend);
     $.ajax({
-        url: "api/Score/save",
+        url: SCORE_URL + "save",
         type: 'POST', //dataType : 'json',
         data: dataToSend,
         contentType: 'application/json',
 
         success: function (data) {
-            id.val("");
             calificacion.val("");
             mensaje.val("");
             reserva.val("");
