@@ -1,4 +1,5 @@
-ADMIN_URL = "http://129.148.31.104:8080/api/Admin/"
+ADMIN_URL = "api/Admin/"
+//ADMIN_URL = "http://129.148.31.104:8080/api/Admin/"
 
 function traerAdmin() {
     //FUNCION GET

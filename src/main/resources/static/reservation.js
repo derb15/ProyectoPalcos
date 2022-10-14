@@ -1,4 +1,5 @@
-RESERVATION_URL = "http://129.148.31.104:8080/api/Reservation/"
+RESERVATION_URL = "api/Reservation/"
+//RESERVATION_URL = "http://129.148.31.104:8080/api/Reservation/"
 
 function traerReservation() {
     //FUNCION GET

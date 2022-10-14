@@ -1,4 +1,5 @@
-CATEGORY_URL = "http://129.148.31.104:8080/api/Category/"
+CATEGORY_URL = "api/Category/"
+//CATEGORY_URL = "http://129.148.31.104:8080/api/Category/"
 
 function traerCategory() {
     //FUNCION GET
