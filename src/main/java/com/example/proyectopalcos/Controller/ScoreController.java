@@ -12,6 +12,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/Score")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.HEAD, RequestMethod.DELETE, RequestMethod.PUT})
+
 public class ScoreController {
     @Autowired
     private ScoreService scoreService;

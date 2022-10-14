@@ -11,6 +11,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/Box")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.HEAD, RequestMethod.DELETE, RequestMethod.PUT})
+
 public class BoxController {
     @Autowired
     private BoxService boxService;

@@ -12,6 +12,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/Admin")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.HEAD, RequestMethod.DELETE, RequestMethod.PUT})
+
 public class AdminController {
     @Autowired
     private AdminService adminService;
