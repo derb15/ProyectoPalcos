@@ -15,9 +15,9 @@ public class SecurityAdapter extends WebSecurityConfigurerAdapter {
         http.authorizeRequests(a -> a
                 .antMatchers("/","/error", "/webjars/**", "/api/**").permitAll()
                 .anyRequest().authenticated()
-        ).exceptionHandling(e -> e
+        )/*.exceptionHandling(e -> e
                 .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
-        ).oauth2Login();
+        )*/.oauth2Login();
 
         http.cors().and().csrf().disable();
     }
