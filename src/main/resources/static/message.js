@@ -11,9 +11,7 @@ function traerMensajes() {
 
         success: function (data) {
             console.log(data)
-            if (data.length) {
-                pintarRespuestaMensajes(data);
-            }
+            pintarRespuestaMensajes(data);
 
         },
         error: function (xhr, status) {
@@ -35,6 +33,11 @@ function drawTableRow(item) {
         <td>
         <div class="row g-3">
             <div class="col-auto">
+                <button class="btn btn-warning" onclick="actualizarRegistroMenssage()"> Actualizar</button>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-danger" onclick="borrarRegistroMensaje(${item.idMessage})"> Borrar</button>
+            </div>
         </div>
         </td>
     </tr>`
@@ -85,4 +88,77 @@ function adicionarRegistroMensajes() {
     });
 
 }
+
+function populateMensajeFields(id, box, client, messageText) {
+    $("#idPalco").val(id);
+    $("#palco").val(box);
+    $("#cliente").val(client);
+    $("#texto").val(messageText);
+
+}
+
+function actualizarRegistroMenssage() {
+    const id = $("#idMessage");
+    const palco = $("#boxMessage");
+    const cliente = $("#clientMessage");
+    const texto = $("#textMessage");
+    const nombre = $("#nameMessage");
+
+
+    let data = {
+        id: id.val(), box: palco.val(), client: cliente.val(), messageText: texto.val(),
+    };
+    let dataToSend = JSON.stringify(data);
+
+
+    $.ajax({
+        url: MESSAGE_URL + "update",
+        type: 'PUT', //dataType : 'json',
+        data: dataToSend,
+        contentType: 'application/json',
+
+        success: function (data) {
+            id.val("");
+            palco.val("");
+            cliente.val("");
+            texto.val("");
+            alert('Registro Editado');
+        },
+        error: function (xhr, status) {
+            console.log(xhr)
+            //  alert('ha sucedido un problema');
+        },
+        complete: function () {
+            traerMensajes();
+        }
+    });
+
+}
+
+function borrarRegistroMensaje(idMensaje) {
+
+    $.ajax({
+        url: MESSAGE_URL + idMensaje,
+        type: 'DELETE', //dataType : 'json',
+        contentType: 'application/json',
+
+        success: function () {
+            alert('Registro Borrado');
+        },
+        error: function (xhr, status) {
+            console.log(xhr)
+        },
+        complete: function () {
+            traerMensajes();
+        }
+
+    });
+
+}
+
+
+
+
+
+
 

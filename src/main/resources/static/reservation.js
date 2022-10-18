@@ -11,14 +11,10 @@ function traerReservation() {
 
         success: function (data) {
             console.log(data)
-            if (data.length) {
-                pintarRespuestaReservation(data);
-            }
-
-
+            pintarRespuestaReservation(data);
         },
         error: function (xhr, status) {
-            alert(xhr);
+            console.log(xhr)
             alert('Ha sucedido un problema');
         }
     });
@@ -32,6 +28,13 @@ function drawTableRowReservation(reservation) {
         <td>${reservation.startDate}</td>
         <td>${reservation.devolutionDate}</td>
         <td>  
+        <div class="row g-3">
+            <div class="col-auto">
+                <button class="btn btn-warning" onclick="actualizarRegistroReservation()"> Actualizar</button>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-danger" onclick="borrarRegistroReservation(${reservation.idReservation})"> Borrar</button>
+            </div>
         </div>
         </td>
     </tr>`
@@ -84,4 +87,76 @@ function adicionarRegistroReservation() {
         }
     });
 }
+
+function populateReservationFields(id, name, email, age) {
+    $("#palco").val(id.client);
+    $("#cliente").val(client.name);
+    $("#fechaInicio").val(startDate);
+    $("#fechaEntrega").val(devolutionDate);
+}
+
+function actualizarRegistroReservation() {
+    const palco = $("#palcoReservation");
+    const cliente = $("#clienteReservation");
+    const fechaInicio = $("#fechaInicioReservation");
+    const fechaEntrega = $("#fechaEntregaReservation");
+
+
+    let data = {
+        box: palco.val(),
+        client: cliente.val(),
+        startDate: fechaInicio.val(),
+        devolutionDate: fechaEntrega.val()
+    };
+
+    let dataToSend = JSON.stringify(data);
+    console.log(dataToSend);
+    $.ajax({
+        url: RESERVATION_URL + "update",
+        type: 'PUT', //dataType : 'json',
+        data: dataToSend,
+        contentType: 'application/json',
+
+
+        success: function (data) {
+            palco.val("");
+            cliente.val("");
+            fechaInicio("");
+            fechaEntrega.val("");
+            alert('Registro Editado');
+        },
+        error: function (xhr, status) {
+            console.log(xhr)
+            //  alert('ha sucedido un problema');
+        },
+        complete: function () {
+            traerReservation();
+        }
+    });
+
+}
+
+function borrarRegistroReservation(idReservation) {
+
+    $.ajax({
+        url: RESERVATION_URL + idReservation,
+        type: 'DELETE', //dataType : 'json',
+        contentType: 'application/json',
+
+        success: function (data) {
+            alert('Registro Borrado');
+        },
+        error: function (xhr, status) {
+            console.log(xhr)
+        },
+        complete: function () {
+            traerReservation();
+        }
+
+    });
+
+}
+
+
+
 
